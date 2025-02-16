@@ -13,7 +13,7 @@ services:
     depends_on:
       - movieapi
     environment:
-      - DISPLAY=host.docker.internal:0.0
-    network_mode: "host"
+      - DISPLAY=${DISPLAY:-host.docker.internal:0.0}  
+    network_mode: bridge
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
