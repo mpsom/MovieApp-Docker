@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  movieapi:
+    image: mpsomatakis/movieapi:latest
+    container_name: movieapi
+    ports:
+      - "8080:8080"
+
+  moviefx:
+    image: mpsomatakis/moviefx:latest
+    container_name: moviefx
+    depends_on:
+      - movieapi
+    environment:
+      - DISPLAY=host.docker.internal:0.0
+    network_mode: "host"
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
